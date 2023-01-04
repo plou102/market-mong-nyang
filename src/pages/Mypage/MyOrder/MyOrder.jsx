@@ -106,7 +106,7 @@ export default function MyOrder() {
       <div className={style.datePickerWrap}>
         <DatePicker
           className='purple'
-          name={date}
+          value={date}
           onChange={handleDatePicker}
           render={<InputIcon />}
         />
