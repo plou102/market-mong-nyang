@@ -27,6 +27,7 @@ export default function Order({ item }) {
   }, []);
 
   async function OrderOk () {
+    let okError = 0;
     try {
       while(item.cnt > 0) {
         const detailID = {
@@ -38,16 +39,20 @@ export default function Order({ item }) {
     } catch {
       setModal(true);
       setModalText('오류가 발생하였습니다.');
+      okError++;
     } finally {
-      setModal(true);
-      setModalText('구매가 확정 되었습니다.');
-      setDisplayBtn(true);
-      setGuideMain('구매가 확정 되었습니다.');
-      setStateText('구매 확정');
+      if(okError === 0) {
+        setModal(true);
+        setModalText('구매가 확정 되었습니다.');
+        setDisplayBtn(true);
+        setGuideMain('구매가 확정 되었습니다.');
+        setStateText('구매 확정');
+      }
     }
   }
 
   async function OrderCancel () {
+    let cancelError = 0;
     try {
       while(item.cnt > 0) {
         const detailID = {
@@ -59,13 +64,16 @@ export default function Order({ item }) {
     } catch {
       setModal(true);
       setModalText('오류가 발생하였습니다.');
+      cancelError++;
     } finally {
-      setModal(true);
-      setModalText('주문이 취소 되었습니다.');
-      setDisplayBtn(true);
-      setGuideMain('주문이 취소 되었습니다.');
-      setGuideSub('');
-      setStateText('주문 취소');
+      if(cancelError === 0) {
+        setModal(true);
+        setModalText('주문이 취소 되었습니다.');
+        setDisplayBtn(true);
+        setGuideMain('주문이 취소 되었습니다.');
+        setGuideSub('');
+        setStateText('주문 취소');
+      }
     }
   }
 
